@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid System - Class</title>
+<link src="css/style.css" type="text/styleshet" />
+</head>
+
+<body class="background--gray">
+  <!-- Title -->
+  <div class="row">
+    <div class="md-50 md-60">
+      <div class="hero padding-40 padding-90 padding-2130 padding-100 pl-20 pr-20 background--white">
+        <h1 class="lign-center fs-35 align-center bold mb-8">Grid/Toolbox CSS Framework</h1>
+        <p class="align-center fs-25">Class shorthand toolbox</p>
+      </div>
+    </div>
+  </div>
+  <!-- Grid -->
+  <div class="row row-md-height row-md-reverse background--white">
+    <div class=" col-xs-12 col-md-5 col-lg-4">
+      <div class="hero pt-40 pb-40 pl-20 pr-20 content__position ">
+        <div class="align-left content--middle">
+          <div>
+            <h2 class="fs-25 bold mb-8 bold">I. Padding/Margin</h2>
+            <p class="fs-16">Make your own grid to make website flow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xs-12 col-md-7 col-lg-8">
+      <div class="align-left padding-20">
+        <!-- example -->
+        <div class="row mb-10">
+        <div class="col-xs-12 col-md-4 border">
+          <p class="border ml-42 dp-inline-block">.ml-42</p>
+        </div>
+        <div class="col-xs-12 col-md-4 border">
+          <p class="border margin-20 dp-inline-block">.margin-20</p>
+        </div>
+        <div class="col-xs-12 col-md-4 border">
+          <p class="border pb-34 dp-inline-block">.pb-34</p>
+        </div>
+        </div>
+        <!-- example information -->
+        <div class="row">
+        <div class="col-xs-12 col-md-4 padding-10 align-md-center">
+          <div class="align-left dp-inline-block">
+            <p><span class="mw-20 dp-inline-block">m</span> : margin</p>
+            <p><span class="mw-20 dp-inline-block">l</span> : left</p>
+            <p><span class="mw-20 dp-inline-block">42</span> : how many px</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 padding-10 align-md-center">
+          <div class="align-left dp-inline-block">
+            <p><span class="mw-20 dp-inline-block">margin</span> : margin (left, top, right, bottom)</p>
+            <p><span class="mw-20 dp-inline-block">20</span> : how many px</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 padding-10 align-md-center">
+          <div class="align-left dp-inline-block">
+            <p><span class="mw-20 dp-inline-block">p</span> : padding</p>
+            <p><span class="mw-20 dp-inline-block">b</span> : bottom</p>
+            <p><span class="mw-20 dp-inline-block">34</span> : how many px</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Grid information -->
+  <div class="row">
+    <div class=" col-xs-12 col-sm-12 col-md-7 col-lg-8 background--white">
+      <div class="hero pt-40 pb-40 pl-20 pr-20 fs-16">
+        <p class="fs-18 mb-10">Cheatsheet: How use padding/margin?</p>
+        <div class="row">
+          <div class="col-sm-12 col-md-4 fs-16 padding-20">
+            <p class="mb-10"><span class="bold">{property}</span><span class="bold">{direction}</span>-<span class="bold">{count}</span>px</p>
+            <p><span class="bold">{property}</span> - margin, padding, m, p</p>
+            <p><span class="bold">{direction}</span> - l, t, r, b</p>
+            <p><span class="bold">{count}</span> - value</p>
+          </div>
+          <div class="col-sm-12 col-md-4 padding-20">
+            <p class="mb-10">When use <span class="bold">{property}</span> <span class="bold">margin</span> or <span class="bold">padding</span> then don't need set direction becouse this two property apply in all direction value (left, top, right, bottom).
+            </p><p>
+            Only when use <span class="bold">{property}</span> <span class="bold">m</span> (margin) or <span class="bold">p</span> (padding) you must include <span class="bold">{direction}</span>.</p>
+          </div>
+          <div class="col-sm-12 col-md-4 padding-20">
+            <p>Example:</p>
+            <p class="lh-25"><span class="code background--gray">.margin-50</span>
+            <span class="code background--gray">.padding-10</span>
+            <span class="code background--gray">.mb-14</span>
+            <span class="code background--gray">.pr-100</span>
+            <span class="code background--gray">.ml-2</span>
+            <span class="code background--gray">.pt-6</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Grid untilizer -->
+  <div class="row row-md-height row-md-reverse background--white">
+    <div class=" col-xs-12 col-md-5 col-lg-4">
+      <div class="hero padding-40 pl-20 pr-20 content--middle ">
+        <div class="align-left">
+          <h2 class="fs-25 bold mb-8 bold">II. GRID UNTILIZER</h2>
+          <p class="fs-16">Overflow columns: use class .row--overflow in parent.</p>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xs-12 col-md-7 col-lg-8 padding-20 pt-40 pb-40">
+      <p class="fs-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercialigntion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupalignte velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidaalignt non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
+  <!-- Overflow -->
+  <div class="row">
+  <img src="" alt="">
+    <div class=" col-xs-12 col-md-7 col-lg-8 padding-40 pl-20 pr-20 background--white">
+      <h3 class="fs-18 mb-10">Grid <span class="bold">overflow</span></h3>
+      <p class="fs-16 mb-14">Use class .row--overlow</p>
+      <div class="row row--overflow row--full-border pos-relative padding-20">
+        <span class="pos-absolute top left fs-12 color--gray-dark">div.row.row--overflow</span>
+        <div class="col-xs-6 col-sm-6 xh-50 padding-20 pos-relative">
+          <span class="pos-absolute top left fs-12 color--gray-dark">div.col-xs-6.col-sm-6</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+        <div class="col-xs-6 col-sm-6 xh-50 padding-20 pos-relative">
+          <span class="pos-absolute top left fs-12 color--gray-dark">div.col-xs-6.col-sm-6</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Same height -->
+  <div class="row">
+    <div class=" col-xs-12 col-md-7 col-lg-8 padding-40 pl-20 pr-20 background--white">
+      <h3 class="fs-18 mb-10">Grid <span class="bold">height</span></h3>
+      <p class="fs-16 mb-14">Use class .row--height</p>
+      <div class="row row--height row--full-border pos-relative padding-20">
+        <span class="pos-absolute top left fs-12 color--gray-dark">div.row.row--height</span>
+        <div class="col-xs-6 pos-relative padding-20">
+          <span class="pos-absolute top left fs-12 color--gray-dark">div.col-xs-6</span> Lorem
+        </div>
+        <div class="col-xs-6 pos-relative padding-20">
+          <span class="pos-absolute top left fs-12 color--gray-dark">div.col-xs-6</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Reverse -->
+  <div class="row">
+    <div class=" col-xs-12 col-md-7 col-lg-8 padding-40 pl-20 pr-20 background--white">
+      <h3 class="fs-18 mb-10">Grid <span class="bold">reverse</span></h3>
+      <p class="fs-16 mb-14">Use class .row--reverse</p>
+      <div class="row row--reverse align-center row--full-border pos-relative padding-20">
+        <span class="pos-absolute top left fs-12 color--gray-dark">div.row.row--reverse</span>
+        <div class="col-xs-6 padding-20 pos-relative">
+          <span class="pos-absolute fs-14 color--gray-dark top left">div.col-xs-6</span> First column
+        </div>
+        <div class="col-xs-6 padding-20 pos-relative">
+          <span class="pos-absolute fs-14 color--gray-dark top left">div.col-xs-6</span> Second column
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Same width -->
+  <div class="row">
+    <div class="col-xs-12 col-md-7 col-lg-8 padding-40 pl-20 pr-20 background--white">
+      <h3 class="fs-18 mb-10">Grid <span class="bold">same width</span></h3>
+      <p class="fs-16 mb-14">Use class .row--same</p>
+      <div class="row pt-16 pb-16 pl-16 pr-16 row--same row--full-border pos-relative padding-20">
+        <span class="top left fs-12 color--gray-dark pos-absolute">div.row.row--same</span>
+        <div class="pos-relative">
+          <span class="top left fs-12 color--gray-dark pos-absolute">div</span>
+        </div>
+        <div class="pos-relative padding-20 pos-relative">
+          <span class="top left fs-12 color--gray-dark pos-absolute">div</span>
+        </div>
+        <div class="pos-relative padding-20 pos-relative">
+          <span class="top left fs-12 color--gray-dark pos-absolute">div</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Space -->
+  <div class="row">
+    <div class="col-xs-12 col-md-7 col-lg-8 pt-40 pb-40 pl-20 pr-20 background--white">
+      <h3 class="fs-18 mb-10">Grid <span class="bold">space</span></h3>
+      <p class="fs-16 mb-14">Use class .row--space</p>
+      <p>IMPROVE</p>
+      <div class="row pt-16 pb-16 pl-16 pr-16 row--space align-center child-mh-40 pos-relative">
+        <span class="top left fs-12 color--gray pos-absolute">div.row.row--same.child-mh-40.pos-relative pt-16.pb-16.pl-16.pr-16)</span>
+        <div class="pos-relative col-sm-5">
+          <span class="top left fs-12 color--gray pos-absolute">div (.pos-relative)</span>
+        </div>
+        <div class="pos-relative col-sm-5" ">
+                    <span class="top left fs-12 color--gray pos-absolute ">div</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Toolbox -->
+    <div class="row row-md-height row-md-reverse background--white ">
+        <div class=" col-xs-12 col-md-5 col-lg-4 ">
+            <div class="hero padding-40 pl-20 pr-20 content--middle ">
+                <div class="align-left ">
+                    <h2 class="fs-25 bold mb-8 bold ">III. TOOLBOX</h2>
+                    <p class="fs-16 ">Make your work easy</p>
+                </div>
+            </div>
+        </div>
+        <div class=" col-xs-12 col-md-7 col-lg-8 padding-20 pt-40 pb-40 ">
+            <p class="fs-16 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercialigntion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupalignte velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidaalignt non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <!-- padding, margin -->
+    <div class="row ">
+        <div class="col-xs-12 col-md-7 col-lg-8 pt-40 pb-40 pl-20 pr-20 background--white ">
+            <h3 class="fs-18 mb-10 ">Padding/Margin</h3>
+            <p class="fs-16 mb-14 ">Use class to add margin padding property for your elements. Replace {numer} with any number. Default numbers up to 100. You can change it in _untilizer.less</p>
+
+            <p class="fs-16 mb-6 "><span class="bold ">.padding-{number}</span> - add padding with all property top, right, bottom, left</p>
+            <p class="fs-16 mb-14 ">Example: .padding-20 (padding:20); .padding-14 (padding:14)</p>
+
+            <p class="fs-16 mb-6 "><span class="bold ">.pt-{number} .pb-{number} .pt-{number} .pr-{number}</span> - add one direction padding: top, right, bottom, left</p>
+            <p class="fs-16 mb-14 ">Example: .pt-20 (padding-top:20); .pl-54 (padding-left:54)</p>
+
+            <p class="fs-16 mb-6 "><span class="bold ">.margin-{number}</span> - add margin with all property top, right, bottom, left</p>
+            <p class="fs-16 mb-14 ">Example: .margin-20 (margin:20); .margin-14 (margin:14)</p>
+
+            <p class="fs-16 mb-6 "><span class="bold ">.mt-{number} .mb-{number} .mt-{number} .mr-{number}</span> - add one direction margin: top, right, bottom, left</p>
+            <p class="fs-16 mb-14 ">Example: .mt-20 (margin-top:20); .ml-54 (margin-left:54)</p>
+
+            <!-- example -->
+            <div class="row row--full-border pos-relative padding-20 ">
+                <span class="color--gray-dark fs-14 pos-absolute top left ">row.padding-20</span>
+                <div class="col-xs-12 pos-relative mt-50 mh-50 ">
+                    <span class="color--gray-dark fs-14 pos-absolute top left ">div.col-xs-12.mt-50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- centered -->
+    <div class="row row-md-reverse row-md-height flex--default-width ">
+        <div class="col-xs-12 col-md-5 col-lg-4 padding-40 pl-20 pr-20 background--white ">
+            <h3 class="fs-18 mb-10 ">Content Toolbox</h3>
+            <p class="fs-16 mb-14 tt-capitalize ">Place content whenever you want</p>
+            <p class="fs-16 mb-6 ">Property: middle, top-left, top-right, bottom-left, bottom-right</p>
+            <p class="fs-16 mb-14 ">Syntax: 3 divs - <span class="code background--gray ">div.content--{property} > div > div</span></p>
+            <p class="fs-16 mb-6 ">Class <span class="code background--gray ">.content--{property}</span> display table element</p>
+            <p class="fs-16 mb-6 ">Child div display table-cell element and add properts: vertival-align, text-align</p>
+            <p class="fs-16 mb-14 ">Grandchild div display inline-block</p>
+            <p class="fs-16 ">Example: <span class="code background--gray ">.padding-20 (padding:20)</span>, <span class="code background--gray ">.padding-14 (padding:14)</span></p>
+        </div>
+        <div class="col-xs-12 col-md-7 col-lg-8 pt-40 pb-40 pl-20 pr-20 background--white ">
+            <!-- example -->
+            <div class="row row--full-border pos-relative padding-20 ">
+                <span class="color--gray-dark fs-14 pos-absolute top left ">row</span>
+                <div class="col-xs-12 content--middle mh-200 pos-relative ">
+                <span class="color--gray-dark fs-14 pos-absolute top left ">Parent: div.content--middle</span>
+                    <div class="border pos-relative ">
+                    <span class="color--gray-dark fs-14 pos-absolute bottom left ">Child: div</span>
+                        <div class="mw-100 mh-100 border pos-relative ">
+                            <span class="color--gray-dark fs-14 pos-absolute top left align-left ">Grandchild: div</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row--full-border pos-relative padding-20 ">
+                <span class="color--gray-dark fs-14 pos-absolute top left ">row</span>
+                <div class="col-xs-12 content--bottom-right mh-200 pos-relative ">
+                <span class="color--gray-dark fs-14 pos-absolute top left ">Parent div.content--top-right</span>
+                    <div class="border pos-relative xh-50 xw-50 ">
+                    <span class="color--gray-dark fs-14 pos-absolute bottom left ">Child div</span>
+                        <div class="mw-100 mh-100 border pos-relative ">
+                            <span class="color--gray-dark fs-14 pos-absolute top left align-left ">Grandchild div</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- build:include footer.html --><!-- /build -->
+<script type="text/javascript " src="/js/libs/jquery.js "></script>
+<script type="text/javascript " src="/js/libs/debug.js "></script>
+<script type="text/javascript " src="/js/printClass.js "></script>
+
+</html>
