@@ -15,27 +15,29 @@ module.exports = function(grunt) {
   // Variables
   var allClass = [],
     outputFile = [],
-    elements;
+    outputUnit = [],
+    regex1;
 
   // Functions
   var readfile = function(path) {
     return grunt.file.read(path);
   };
   var createReg = function(array) {
-    var output = "^";
-    output += array.split(",").map(function(value, index) {
+    grunt.log.writeln(typeof array);
+    var output = "^(";
+    output += array.map(function(value, index) {
       if (index % 2 !== 0) {
         return;
       }
       return value+"|";
     }).join("");
-    output += "-\\d+";
+    output += ")-\\d+";
     return output;
   };
-  var checkClassExist = function(className) {
-    var len = allClass.length;
+  var checkClassExist = function(className, array) {
+    var len = array.length;
     for (var i = 0; i < len; i++) {
-      if (allClass[i].indexOf(className) > -1) {
+      if (array[i].indexOf(className) > -1) {
         return i;
       }
     }
@@ -45,23 +47,38 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('toolboxcss', 'Creat', function() {
     // Variables
     var options = this.options(),
-      database1 = readfile(options.database),
-      database2 = readfile(options.database2),
-      dest = options.dest,
+      database1 = readfile(options.database).split(","),
+      database2 = readfile(options.database2).split(","),
+      dest = options.dest;
       // Attribution
-      elements = new RegExp(createReg(database1));
+      regex1 = new RegExp(createReg(database1));
 
     // Functions
-    var addClass = function(e) {
-      if (e.length > 0 && elements.test(e.valueOf())) {
-        // Variables
-        var property = e.slice(0, e.indexOf("-")),
-          index = checkClassExist(property);
-        // Attribution
-        if (!allClass.length || checkClassExist(property) === -1) {
-          allClass.push(e);
+    var createUnit = function(array) {
+      var output = [],
+          len = array.length;
+
+      for (var i = 0; i < len; i++) {
+        grunt.log.writeln(output);
+        var className = array[i];
+        // Check if className match RegEx
+        if (regex1.test(className)) {
+          // Variables
+          var indexDash = className.indexOf("-"),
+              property = className.slice(0, indexDash),
+              value = className.slice(indexDash + 1, className.length),
+              index = checkClassExist(property, output);
+              grunt.log.writeln(index);
+
+          if (!output.length || index === -1) {
+            output.push([property, database1[database1.indexOf(property)+1],value]);
+          } else if (output[index].indexOf(value) === -1) {
+            output[index].push(value);
+          }
         }
+
       }
+      return output;
     };
 
     // Loop files
@@ -75,14 +92,23 @@ module.exports = function(grunt) {
       // Attribution
       $('[class]').each(function(array) {
         $($(this).attr('class').split(' ')).each(function() {
-          addClass(this);
+          var name = this;
+          if (allClass.indexOf(name) === -1) {
+            allClass.push(name);
+          }
         });
       });
     });
+
     // array allClass have all class in html files
+    outputUnit = createUnit(allClass);
+
+    outputFile = outputUnit.map(function(value) {
+      return ".make-untilizer(" + value + ");";
+    }).join("\n");
 
     // Create end file
-    grunt.file.write(dest, allClass);
+    grunt.file.write(dest, outputFile);
     grunt.log.writeln('File "' + dest + '" create.');
   });
 };
