@@ -16,14 +16,15 @@ module.exports = function(grunt) {
   var allClass = [],
     outputFile = [],
     outputUnit = [],
-    regex1;
+    outputUnunit = [],
+    regex1,
+    regex2;
 
   // Functions
   var readfile = function(path) {
     return grunt.file.read(path);
   };
   var createReg = function(array) {
-    grunt.log.writeln(typeof array);
     var output = "^(";
     output += array.map(function(value, index) {
       if (index % 2 !== 0) {
@@ -52,6 +53,7 @@ module.exports = function(grunt) {
       dest = options.dest;
       // Attribution
       regex1 = new RegExp(createReg(database1));
+      regex2 = new RegExp(createReg(database2));
 
     // Functions
     var createUnit = function(array) {
@@ -59,7 +61,6 @@ module.exports = function(grunt) {
           len = array.length;
 
       for (var i = 0; i < len; i++) {
-        grunt.log.writeln(output);
         var className = array[i];
         // Check if className match RegEx
         if (regex1.test(className)) {
@@ -68,7 +69,6 @@ module.exports = function(grunt) {
               property = className.slice(0, indexDash),
               value = className.slice(indexDash + 1, className.length),
               index = checkClassExist(property, output);
-              grunt.log.writeln(index);
 
           if (!output.length || index === -1) {
             output.push([property, database1[database1.indexOf(property)+1],value]);
