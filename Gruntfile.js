@@ -37,8 +37,7 @@ module.exports = function(grunt) {
       },
       options: {
         dest: "less/_automatic.less",
-        database: "tasks/database-unit-px.csv",
-        database2: "tasks/database-ununit.csv",
+        database: "tasks/toolboxdata.json",
       }
     },
 

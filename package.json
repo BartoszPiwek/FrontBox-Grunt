@@ -1,7 +1,7 @@
 {
-  "name": "toolbox-grunt",
+  "name": "toolboxcss",
   "description": "Toolbox CSS Grunt",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "homepage": "https://github.com/BartoszPiwek/Toolbox-Grunt",
   "author": {
     "name": "Bartosz Piwek",

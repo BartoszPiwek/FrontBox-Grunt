@@ -1,0 +1,39 @@
+{
+  "field0": {
+    "unit": ["ml","margin-left","mr","margin-right","mt","margin-top","mb","margin-bottom","margin","margin",
+    "pl","padding-left","pr","padding-right","pt","padding-top","pb","padding-bottom","padding","padding",
+    "fs","font-size",
+    "bl","border-left", "br","border-right", "bt","border-top", "bb","border-bottom", "border","border",
+    "lh","line-height",
+    "mh","min-height","xh","max-height","mw","min-width","xw","max-width","width","width","height","height",
+    "ws", "word-spacing",
+    "ls", "letter-spacing"] ,
+    "gap": [
+      "-"
+    ],
+    "function": [
+      "automatic-unit"
+    ]
+  },
+
+  "field1": {
+    "unit": ["op","opacity"] ,
+    "gap": [
+      "-"
+    ],
+    "function": [
+      "automatic-ununit"
+    ]
+  },
+
+  "field2": {
+    "unit": ["xs", "sm", "md", "lg"] ,
+    "gap": [
+      "_"
+    ],
+    "function": [
+      "automatic-responsive"
+    ],
+    "addon": "responsive"
+  }
+}
