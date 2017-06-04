@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 
   // Variables
   var allClass = [],
-    outputFile = [],
+    outputFile = '@import "automatic.less";\n',
     outputUnit = [],
     outputUnunit = [],
     regex1,
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
     // array allClass have all class in html files
     outputUnit = createUnit(allClass);
 
-    outputFile = outputUnit.map(function(value) {
+    outputFile += outputUnit.map(function(value) {
       return ".make-untilizer(" + value + ");";
     }).join("\n");
 
