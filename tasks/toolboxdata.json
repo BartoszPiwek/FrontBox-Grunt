@@ -27,7 +27,7 @@
   },
 
   "field2": {
-    "unit": ["xs", "sm", "md", "lg"] ,
+    "unit": ["xs", "mobile-small", "sm", "mobile", "md", "tablet", "lg", "desktop"] ,
     "gap": [
       "_"
     ],

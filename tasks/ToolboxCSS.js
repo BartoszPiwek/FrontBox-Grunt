@@ -12,54 +12,47 @@ module.exports = function(grunt) {
 
   var cheerio = require('cheerio');
 
-  // Variables
+  // Global Variables
   var allClass = [],
-    outputFile = '@import "automatic.less";\n',
-    outputUnit = [],
-    outputUnunit = [];
+    outputFile = '@import "automatic.less";\n';
 
-  //===== Functions
+  // Global Functions
 
   // Return one RegExp
   var createReg = function(object) {
-    var unit = object.unit,
-        gap = object.gap,
-        output = "^(";
-    output += unit.map(function(value, index) {
+    var output = "^(",
+      units = object.unit,
+      gap = object.gap,
+      addon = object.addon;
+    if (!addon) {
+      addon = "";
+      gap = gap + "\\d+";
+    } else {
+      addon = gap;
+      gap = ".*?\\d+$";
+    }
+    output += units.map(function(value, index) {
       if (index % 2 !== 0) {
         return;
       }
-      return value + "|";
+      return value + addon + "|";
     }).join("");
-    output += ")" + gap + "\\d+";
-    return [new RegExp(output), gap];
+    output += ")" + gap;
+
+    grunt.log.writeln(output);
+    return new RegExp(output);
   };
 
   // Return database object
   var readDatabase = function(path) {
-    grunt.log.writeln("Read database: " + path + "\n");
     return grunt.file.readJSON(path);
   };
 
-  // Return array with RegExp
-  var regLoop = function(database) {
-      var keys = Object.keys(database),
-          length = keys.length,
-          output = [];
-    for (var i = 0; i < length; i++) {
-      grunt.log.writeln("Create RegExp: " + i);
-      output.push(createReg(database["field"+i]));
-    }
-    grunt.log.writeln("End read database: \n" + output + "\n");
-    return output;
-  };
-
   // Return number of usage array
-  var checkClassExist = function(className, array, index) {
-    grunt.log.writeln("checkClassExist: " + array[index]);
-    var len = array[index].length;
+  var checkClassExist = function(className, array) {
+    var len = array.length;
     for (var i = 0; i < len; i++) {
-      if (array[index][i].indexOf(className) > -1) {
+      if (array[i].indexOf(className) > -1) {
         return i;
       }
     }
@@ -70,72 +63,66 @@ module.exports = function(grunt) {
     // Variables
     var options = this.options(),
       database = readDatabase(options.database),
+      databaseKeys = Object.keys(database),
+      databaseLen = databaseKeys.length,
       dest = options.dest;
 
     //===== Functions
 
+    // Return array with RegExp
+    var regLoop = function() {
+      for (var i = 0; i < databaseLen; i++) {
+        var databaseName = database["field" + i];
+        databaseName.regExp = createReg(databaseName);
+      }
+    };
+
     // Return database type number
-    var checkType = function(className ,reg) {
-      grunt.log.writeln("Check type for: " + className);
-      var databaseLength = Object.keys(database).length;
-      for (var i = 0; i < databaseLength; i++) {
-        if (reg[i][0].test(className)) {
-          grunt.log.writeln("End check type: " + i);
+    var checkType = function(className) {
+      for (var i = 0; i < databaseLen; i++) {
+        if (database["field" + i].regExp.test(className)) {
           return i;
         }
-        grunt.log.writeln("No in: " +reg[i]);
       }
-      grunt.log.writeln("End check type: -1");
       return -1;
     };
 
     // Return full array with class
     var createUnit = function(array) {
+      regLoop();
       var output = [],
-          len = array.length,
-          reg = regLoop(database),
-          keys = Object.keys(database);
+        len = array.length;
       for (var i = 0; i < len; i++) {
-        var className = array[i];
-        var typedata = checkType(className, reg);
+        var className = array[i],
+          typedata = checkType(className);
         // Check if className match RegEx
         if (typedata !== -1) {
           // Variables
-          var indexDash = className.indexOf(reg[typedata][1]),
+          var field = "field" + typedata,
+            indexDash = className.indexOf(database[field].gap),
             property = className.slice(0, indexDash),
-            value = className.slice(indexDash + 1, className.length),
-            indexArray = typedata/2;
-            grunt.log.writeln("Value - " + value + "\n" + "Property - " + property);
+            value = className.slice(indexDash + 1, className.length);
 
           // If property dont exist in array
-          if (!output[indexArray]) {
-            output.push([]);
+          if (!database[field].output) {
+            database[field].output = [];
           }
-
-          var index = checkClassExist(property, output, indexArray);
-
-          if (!output[indexArray][index] || index === -1) {
-            var unit = database[keys[typedata]][database[keys[typedata]].indexOf(property)+1];
-            grunt.log.writeln("Unit - " + unit + "\n");
-            // If array dont exist
-            if (!output[typedata/2]) {
-              output.push([]);
-            }
-            output[typedata/2].push([property, unit, value]);
+          var index = database[field].unit.indexOf(property),
+            indexInDatabase = checkClassExist(property, database[field].output);
+          if (indexInDatabase === -1) {
+            var unit = database[field].unit[index + 1];
+            database[field].output.push([property, unit, value]);
             // If array exist
-          } else if (output[typedata/2][index].indexOf(value) === -1) {
-            grunt.log.writeln("Add value for " + property);
-            output[typedata/2][index].push(value);
-            grunt.log.writeln();
+          } else if (database[field].output[indexInDatabase].indexOf(value) === -1) {
+            database[field].output[indexInDatabase].push(value);
           }
-        } else {
-          grunt.log.writeln("Skip: " + className + "\n");
         }
       }
       return output;
     };
-    grunt.log.writeln("Function start ...\n");
-    grunt.log.writeln("Loop files:");
+
+    //===== START FUNCTION
+
     // Loop files
     this.files.forEach(function(f) {
       // Variables
@@ -144,7 +131,6 @@ module.exports = function(grunt) {
         $ = cheerio.load(content, {
           decodeEntities: false
         });
-        grunt.log.writeln(filepath);
       $('[class]').each(function(array) {
         $($(this).attr('class').split(' ')).each(function() {
           var name = this;
@@ -155,13 +141,34 @@ module.exports = function(grunt) {
       });
     });
 
-    // array allClass have all class in html files
-    grunt.log.writeln("\nCreate full array");
-    outputUnit = createUnit(allClass);
-    grunt.log.writeln("Full array: " + "\n" + outputUnit[0]);
-    outputFile += outputUnit[1].map(function(value) {
-      return ".make-untilizer(" + value + ");";
-    }).join("\n");
+    // Array allClass have all class in html files
+    var outputUnit = createUnit(allClass);
+
+    var printAllOutput = function() {
+
+      // Variable
+      var output = [],
+        // Function
+        createNewFunction = function(value, lessFunction) {
+          return "." + lessFunction + "(" + value + ");";
+        };
+
+      // Loop all object "field"
+      for (var i = 0; i < databaseLen; i++) {
+        var dataField = database["field" + i],
+          dataLess = dataField.output;
+        // If have output data
+        if (dataLess) {
+          var lenField = dataLess.length,
+            lessFunction = dataField.function;
+          for (var a = 0; a < lenField; a++) {
+            output.push(createNewFunction(dataLess[a], lessFunction));
+          }
+        }
+      }
+      return output.join("\n");
+    };
+    outputFile += printAllOutput();
 
     // Create end file
     grunt.file.write(dest, outputFile);
