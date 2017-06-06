@@ -11,6 +11,9 @@
     "gap": [
       "-"
     ],
+    "endReg": [
+      "\\d+"
+    ],
     "function": [
       "automatic-unit"
     ]
@@ -21,6 +24,9 @@
     "gap": [
       "-"
     ],
+    "endReg": [
+      "\\d+"
+    ],
     "function": [
       "automatic-ununit"
     ]
@@ -30,6 +36,9 @@
     "unit": ["xs", "mobile-small", "sm", "mobile", "md", "tablet", "lg", "desktop"] ,
     "gap": [
       "_"
+    ],
+    "endReg": [
+      ".*?\\d+$"
     ],
     "function": [
       "automatic-responsive"

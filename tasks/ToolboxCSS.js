@@ -23,21 +23,15 @@ module.exports = function(grunt) {
     var output = "^(",
       units = object.unit,
       gap = object.gap,
+      endReg = object.endReg,
       addon = object.addon;
-    if (!addon) {
-      addon = "";
-      gap = gap + "\\d+";
-    } else {
-      addon = gap;
-      gap = ".*?\\d+$";
-    }
     output += units.map(function(value, index) {
       if (index % 2 !== 0) {
         return;
       }
-      return value + addon + "|";
+      return value + "|";
     }).join("");
-    output += ")" + gap;
+    output += ")" + gap + endReg;
 
     grunt.log.writeln(output);
     return new RegExp(output);
@@ -89,33 +83,64 @@ module.exports = function(grunt) {
 
     // Return full array with class
     var createUnit = function(array) {
+
+      // Run Functions
       regLoop();
-      var output = [],
-        len = array.length;
-      for (var i = 0; i < len; i++) {
-        var className = array[i],
-          typedata = checkType(className);
-        // Check if className match RegEx
-        if (typedata !== -1) {
-          // Variables
-          var field = "field" + typedata,
-            indexDash = className.indexOf(database[field].gap),
+
+      // Functions
+      var addOutputValue = function(objectField, value, property, addon) {
+        var index = objectField.unit.indexOf(property),
+          indexInDatabase = checkClassExist(property, objectField.output);
+          if (addon === "responsive") {
+            grunt.log.writeln("RESPONSIVE");
+          } else {
+          grunt.log.writeln("Index:" + index +"\nIndexInDatabase: " + indexInDatabase + "\nValue: " + value + "\nProperty: "+property+"\n");
+        if (indexInDatabase === -1) {
+          var unit = objectField.unit[index + 1];
+          objectField.output.push([property, unit, value]);
+          // If array exist
+        } else if (objectField.output[indexInDatabase].indexOf(value) === -1) {
+          objectField.output[indexInDatabase].push(value);
+        }
+      }
+      };
+
+      var checkOutputValue = function(className, field, outField) {
+        if (!outField) {
+          outField = field;
+        }
+        var checkInField = database[field],
+            indexDash = className.indexOf(checkInField.gap),
             property = className.slice(0, indexDash),
             value = className.slice(indexDash + 1, className.length);
 
-          // If property dont exist in array
+        if (!database[field].output) {
+          database[field].output = [];
+        }
+
+        // Check if have addon property - "responsive"
+        if (database[field].addon === "responsive") {
+          addOutputValue(database[field], value, property, "responsive");
+        }
+        // If don't have addon property
+        else {
+          addOutputValue(database[field], value, property);
+        }
+      };
+
+      // Variables
+      var output = [],
+          len = array.length;
+
+      // Loop
+      for (var i = 0; i < len; i++) {
+        var typedata = checkType(array[i]);
+        if (typedata !== -1) {
+          var field = "field" + typedata;
           if (!database[field].output) {
             database[field].output = [];
           }
-          var index = database[field].unit.indexOf(property),
-            indexInDatabase = checkClassExist(property, database[field].output);
-          if (indexInDatabase === -1) {
-            var unit = database[field].unit[index + 1];
-            database[field].output.push([property, unit, value]);
-            // If array exist
-          } else if (database[field].output[indexInDatabase].indexOf(value) === -1) {
-            database[field].output[indexInDatabase].push(value);
-          }
+          checkOutputValue(array[i], field);
         }
       }
       return output;
