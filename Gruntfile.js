@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       },
       options: {
         dest: "less/_automatic.less",
-        database: "tasks/toolboxdata.json",
+        database: "ToolboxData.json",
       }
     },
 

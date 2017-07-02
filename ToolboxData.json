@@ -33,7 +33,7 @@
   },
 
   "field2": {
-    "unit": ["xs", "mobile-small", "sm", "mobile", "md", "tablet", "lg", "desktop"] ,
+    "unit": ["xs", "@mobile-small", "sm", "@mobile", "md", "@tablet", "lg", "@desktop"] ,
     "gap": [
       "_"
     ],
