@@ -38,7 +38,7 @@
       "_"
     ],
     "endReg": [
-      ".*?\\d+$"
+      ".*?"
     ],
     "function": [
       "automatic-responsive"
