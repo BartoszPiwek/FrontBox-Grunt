@@ -36,7 +36,8 @@ module.exports = function(grunt) {
         flatten: true,
       },
       options: {
-        dest: "less/_automatic.less",
+        dest: "less/automatic.less",
+        destResponsive: "less/responsive.less",
         database: "ToolboxData.json",
       }
     },
