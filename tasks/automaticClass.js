@@ -13,10 +13,19 @@ module.exports = function(grunt) {
   var cheerio = require('cheerio');
 
   // Global Variables
+
+  // all class finding in html files
   var allClass = [],
+<<<<<<< HEAD:tasks/automaticClass.js
       outputFile = '',
       responsiveFile = '',
       responsiveArray = [];
+=======
+    // outpur file contain less functions & responsive class
+    outputFile = '',
+    responsiveFile = '',
+    responsiveArray = [];
+>>>>>>> master:tasks/ToolboxCSS.js
 
 
   // Global Functions
@@ -36,7 +45,6 @@ module.exports = function(grunt) {
     }).join("");
     output += ")" + gap + endReg;
 
-    grunt.log.writeln(output);
     return new RegExp(output);
   };
 
@@ -62,7 +70,8 @@ module.exports = function(grunt) {
       database = readDatabase(options.database),
       databaseKeys = Object.keys(database),
       databaseLen = databaseKeys.length,
-      dest = options.dest;
+      dest = options.dest,
+      destResponsive = options.destResponsive;
 
     //===== Functions
 
@@ -93,14 +102,21 @@ module.exports = function(grunt) {
       // Functions
       var addOutputValue = function(objectField, value, property, addon) {
         var index = objectField.unit.indexOf(property),
-            indexInDatabase,
-            unit;
-          if (addon === "responsive") {
-            indexInDatabase = checkClassExist(property, responsiveArray);
-            grunt.log.writeln("RESPONSIVE");
-            grunt.log.writeln("Index:" + index +"\nIndexInDatabase: " + indexInDatabase + "\nValue: " + value + "\nProperty: "+property+"\n");
+          indexInDatabase,
+          unit;
 
+        if (addon === "responsive") {
+          indexInDatabase = checkClassExist(property, responsiveArray);
 
+          if (indexInDatabase === -1) {
+            unit = objectField.unit[index + 1];
+            responsiveArray.push([property, unit, value]);
+            // If array exist
+          } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
+            responsiveArray[indexInDatabase].push(value);
+          }
+
+<<<<<<< HEAD:tasks/automaticClass.js
             var typedata = checkType(value);
             if (typedata !== -1) {
               var field = "field" + typedata;
@@ -118,58 +134,66 @@ module.exports = function(grunt) {
             } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
               responsiveArray[indexInDatabase].push(value);
             }
+=======
+          return value;
+>>>>>>> master:tasks/ToolboxCSS.js
 
 
-          } else {
+        } else {
           indexInDatabase = checkClassExist(property, objectField.output);
-          grunt.log.writeln("Index:" + index +"\nIndexInDatabase: " + indexInDatabase + "\nValue: " + value + "\nProperty: "+property+"\n");
-        if (indexInDatabase === -1) {
-          unit = objectField.unit[index + 1];
-          objectField.output.push([property, unit, value]);
-          // If array exist
-        } else if (objectField.output[indexInDatabase].indexOf(value) === -1) {
-          objectField.output[indexInDatabase].push(value);
-        }
-      }
-      };
-
-      var checkOutputValue = function(className, field, outField) {
-        if (!outField) {
-          outField = field;
-        }
-        var checkInField = database[field],
-            indexDash = className.indexOf(checkInField.gap),
-            property = className.slice(0, indexDash),
-            value = className.slice(indexDash + 1, className.length);
-
-        if (!database[field].output) {
-          database[field].output = [];
-        }
-
-        // Check if have addon property - "responsive"
-        if (database[field].addon === "responsive") {
-          addOutputValue(database[field], value, property, "responsive");
-        }
-        // If don't have addon property
-        else {
-          addOutputValue(database[field], value, property);
+          if (indexInDatabase === -1) {
+            unit = objectField.unit[index + 1];
+            objectField.output.push([property, unit, value]);
+            // If array exist
+          } else if (objectField.output[indexInDatabase].indexOf(value) === -1) {
+            objectField.output[indexInDatabase].push(value);
+          }
         }
       };
 
-      // Variables
-      var output = [],
-          len = array.length;
-
-      // Loop
-      for (var i = 0; i < len; i++) {
-        var typedata = checkType(array[i]);
+      var classProcess = function(name) {
+        var typedata = checkType(name);
         if (typedata !== -1) {
           var field = "field" + typedata;
           if (!database[field].output) {
             database[field].output = [];
           }
-          checkOutputValue(array[i], field);
+
+          var checkInField = database[field],
+            indexDash = name.indexOf(checkInField.gap),
+            property = name.slice(0, indexDash),
+            value = name.slice(indexDash + 1, name.length),
+            addon = false;
+
+          if (!database[field].output) {
+            database[field].output = [];
+          }
+
+          // Check if have addon property - "responsive"
+          if (database[field].addon === "responsive") {
+            addon = addOutputValue(database[field], value, property, "responsive");
+          }
+          // If don't have addon property
+          else {
+            addon = addOutputValue(database[field], value, property);
+          }
+
+          if (addon) {
+            classProcess(addon);
+          }
+
+        } else {
+          return false;
         }
+      };
+
+      // Variables
+      var output = [],
+        len = array.length;
+
+      // Loop
+      for (var i = 0; i < len; i++) {
+        classProcess(array[i]);
       }
       return output;
     };
@@ -177,6 +201,7 @@ module.exports = function(grunt) {
     //===== START FUNCTION
 
     // Loop files
+    // add all class to array "allClass"
     this.files.forEach(function(f) {
       // Variables
       var filepath = f.src,
@@ -194,6 +219,7 @@ module.exports = function(grunt) {
       });
     });
 
+    //
     var outputUnit = createUnit(allClass);
 
     //=========================================================================
@@ -228,19 +254,14 @@ module.exports = function(grunt) {
     //=========================================================================
     // Loop all array with responsive class
     //=========================================================================
+
     var buildResponsive = function(array) {
-      grunt.log.writeln("2) BUILD RESPONSIVE\n");
       if (array.length) {
         var len = array.length,
-            output = "\n";
-
-        grunt.log.writeln("Responsive count array: " + len);
+          output = "\n";
 
         for (var i = 0; i < len; i++) {
           var len2 = responsiveArray[i].length - 1;
-
-          grunt.log.writeln("\tLoop for " + array[i][0]);
-          grunt.log.writeln("\t\tResponsive classes: " + Number(len2 - 1));
 
           output += "@media " + array[i][1] + " { \n";
           for (var a = len2; a > 1; a--) {
@@ -251,16 +272,19 @@ module.exports = function(grunt) {
           output += "}\n";
 
         }
+        grunt.log.writeln('File "' + destResponsive + '" create.');
         return output;
       }
       grunt.log.writeln("Responsive class: empty");
     };
-    outputFile += buildResponsive(responsiveArray);
+
+    var outputFileResponsive = buildResponsive(responsiveArray);
 
     //=========================================================================
     // Create end file
     //=========================================================================
     grunt.file.write(dest, outputFile);
+    grunt.file.write(destResponsive, outputFileResponsive);
     grunt.log.writeln('File "' + dest + '" create.');
   });
 };
