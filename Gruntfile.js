@@ -1,6 +1,6 @@
 /*
- * toolboxcss
- * https://github.com/root/temp
+ * FrontBox-Grunt
+ * https://github.com/BartoszPiwek/FrontBox-Grunt
  *
  * Copyright (c) 2017 Bartosz Piwek
  * Licensed under the MIT license.
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    toolboxcss: {
+    automaticClass: {
       automatic: {
         expand: true,
         src: '*.html',
@@ -38,6 +38,18 @@ module.exports = function(grunt) {
       options: {
         dest: "less/_automatic.less",
         database: "ToolboxData.json",
+      }
+    },
+
+    colortoless: {
+      automatic: {
+        expand: true,
+        src: '*.less',
+        cwd: 'less/',
+        flatten: true,
+      },
+      options: {
+        variableFile: "less/variables/_colors.less",
       }
     },
 
@@ -53,7 +65,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'toolboxcss']);
+  grunt.registerTask('test', ['colortoless']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

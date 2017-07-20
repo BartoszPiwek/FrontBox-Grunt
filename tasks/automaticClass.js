@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 
   // Global Variables
   var allClass = [],
-      outputFile = '@import "automatic.less";\n',
+      outputFile = '',
       responsiveFile = '',
       responsiveArray = [];
 
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     return -1;
   };
 
-  grunt.registerMultiTask('toolboxcss', 'Creat', function() {
+  grunt.registerMultiTask('automaticClass', 'Creat', function() {
     // Variables
     var options = this.options(),
       database = readDatabase(options.database),
@@ -99,6 +99,16 @@ module.exports = function(grunt) {
             indexInDatabase = checkClassExist(property, responsiveArray);
             grunt.log.writeln("RESPONSIVE");
             grunt.log.writeln("Index:" + index +"\nIndexInDatabase: " + indexInDatabase + "\nValue: " + value + "\nProperty: "+property+"\n");
+
+
+            var typedata = checkType(value);
+            if (typedata !== -1) {
+              var field = "field" + typedata;
+              if (!database[field].output) {
+                database[field].output = [];
+              }
+              grunt.log.writeln(typedata + " " + field + " " + value);
+            }
 
 
             if (indexInDatabase === -1) {
