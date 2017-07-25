@@ -16,16 +16,10 @@ module.exports = function(grunt) {
 
   // all class finding in html files
   var allClass = [],
-<<<<<<< HEAD:tasks/automaticClass.js
-      outputFile = '',
-      responsiveFile = '',
-      responsiveArray = [];
-=======
     // outpur file contain less functions & responsive class
     outputFile = '',
     responsiveFile = '',
     responsiveArray = [];
->>>>>>> master:tasks/ToolboxCSS.js
 
 
   // Global Functions
@@ -64,7 +58,7 @@ module.exports = function(grunt) {
     return -1;
   };
 
-  grunt.registerMultiTask('automaticClass', 'Creat', function() {
+  grunt.registerMultiTask('autoclass', 'Creat', function() {
     // Variables
     var options = this.options(),
       database = readDatabase(options.database),
@@ -116,7 +110,6 @@ module.exports = function(grunt) {
             responsiveArray[indexInDatabase].push(value);
           }
 
-<<<<<<< HEAD:tasks/automaticClass.js
             var typedata = checkType(value);
             if (typedata !== -1) {
               var field = "field" + typedata;
@@ -134,9 +127,7 @@ module.exports = function(grunt) {
             } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
               responsiveArray[indexInDatabase].push(value);
             }
-=======
           return value;
->>>>>>> master:tasks/ToolboxCSS.js
 
 
         } else {

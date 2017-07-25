@@ -1,23 +1,23 @@
 {
-  "name": "toolboxcss",
-  "description": "Toolbox CSS Grunt",
-  "version": "0.1.6",
-  "homepage": "https://github.com/BartoszPiwek/Toolbox-Grunt",
+  "name": "frontbox-grunt",
+  "description": "Bunch of helpful tasks for Front-End Developer",
+  "version": "1.0.1",
+  "homepage": "https://github.com/BartoszPiwek/FrontBox-Grunt",
   "author": {
     "name": "Bartosz Piwek",
     "email": "bartoszpiwek@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BartoszPiwek/Toolbox-Grunt.git"
+    "url": "https://github.com/BartoszPiwek/FrontBox-Grunt.git"
   },
   "bugs": {
-    "url": "https://github.com/BartoszPiwek/Toolbox-Grunt/issues"
+    "url": "https://github.com/BartoszPiwek/FrontBox-Grunt/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/BartoszPiwek/Toolbox-Grunt/blob/master/LICENSE-MIT"
+      "url": "https://github.com/BartoszPiwek/FrontBox-Grunt/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
@@ -31,10 +31,10 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-jshint": "^0.12.0",
     "grunt-contrib-nodeunit": "^0.3.3",
-    "toolboxcss": "0.0.2"
+    "frontbox-grunt": "1.0.0"
   },
   "keywords": [
-    "Toolbox, Autocreate, Class"
+    "Frontbox, Autocreate, Class, Automatic"
   ],
   "dependencies": {
     "cheerio": "^0.19.0"

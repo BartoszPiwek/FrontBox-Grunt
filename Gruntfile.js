@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    automaticClass: {
+    autoclass: {
       automatic: {
         expand: true,
         src: '*.html',
@@ -51,6 +51,7 @@ module.exports = function(grunt) {
       },
       options: {
         variableFile: "less/variables/_colors.less",
+        prefix: "@",
       }
     },
 
