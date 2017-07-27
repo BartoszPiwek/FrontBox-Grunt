@@ -21,11 +21,11 @@ grunt.loadNpmTasks('frontbox-grunt');
 
 ## Tasks
 
-### colortoless
+### autocolor
 Scan LESS/SASS files and automatic replace/create variable for colors.
 
 ```js
-    colortoless: {
+    autocolor: {
       automatic: {
         expand: true,
         src: '*.less',
@@ -52,4 +52,6 @@ Type: `String`
 Prefix preprocessors variable
 
 ## Release History
-_(1.0.0 - add colortoless & autoclass)_
+_1.0.2 - autocolor: convert variables name to uppercase letter; add filepath to variableFile_
+<br>
+_1.0.0 - add autocolor & autoclass_

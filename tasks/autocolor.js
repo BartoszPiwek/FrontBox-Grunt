@@ -1,5 +1,5 @@
 /*
- * Color to LESS
+ * Color to CSS Preprocessors
  * https://github.com/BartoszPiwek/FrontBox-Grunt
  *
  * Copyright (c) 2017 Bartosz Piwek
@@ -10,46 +10,59 @@
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('colortoless', 'Creat', function() {
+  grunt.registerMultiTask('autocolor', 'Creat', function() {
 
-    //===== Main Functions
-
-    // Return database object
+    // Return database file
     var readFile = function(path) {
       return grunt.file.read(path);
     };
 
-    //===== Variables
+    // Main variables
     var options = this.options(),
+      // variableFile content
       destContent = readFile(options.variableFile),
-      prefix = options.prefix,
+      // variableFile path
       dest = options.variableFile,
+      // preprocessor prefix
+      prefix = options.prefix,
+      // REGEXP
+      // syntax for search variables in "variableFile" content
       regCheckVar = "(" + prefix + ".*):.*(#\\w\\w\\w\\w\\w\\w)",
+      // first search hex colors
       regHex = /#\w\w\w\w\w\w/g,
-      match,
-      colorsObject = {},
+      // second seach hex colors
       regIsHex = /^#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]/,
+      // object with colors from "variableFile"
+      colorsObject = {},
+      // LOG
       unSetVar = false,
       countNewVar = 0,
+      // TEMP VAR
+      match,
       temp,
       temp2,
-      regVariable = new RegExp(regCheckVar, "g"),
-      varName = prefix + "variable";
+      // default variable syntax
+      varName = prefix + "variable",
+      // create RegExp for search variables in "variableFile" content
+      regVariable = new RegExp(regCheckVar, "g");
 
-    //===== Create object with define variable colors
-    while (match = regVariable.exec(destContent)) {
-      temp = match[0];
-      temp = temp.slice(temp.indexOf(":") + 1, temp.length).replace(/ /g, "");
-      if (temp[0] === "#") {
-        colorsObject[match[2]] = match[1];
+      // Fill object with colors in "destContent" file
+      while (match = regVariable.exec(destContent)) {
+        temp = match[0];
+        temp = temp.slice(temp.indexOf(":") + 1, temp.length).replace(/ /g, "");
+        temp2 = match[2].toUpperCase();
+        if (temp[0] === "#") {
+          colorsObject[temp2] = match[1];
+          // Convert variables name to uppercase letter
+          destContent = destContent.replace(temp, temp2);
+        }
       }
-    }
 
-
-    //===== Loop files
+    // Loop files
     this.files.forEach(function(f) {
       var filepath = f.src;
 
+      //
       if (filepath !== dest) {
 
         // Variables
@@ -57,13 +70,15 @@ module.exports = function(grunt) {
 
         while (match = regHex.exec(content)) {
           if (regIsHex.test(match)) {
+            match = match[0];
+            match = match.toUpperCase();
             temp2 = colorsObject[match];
             if (temp2 !== void 0 && temp2 !== varName) {
               temp = new RegExp(match);
               content = content.replace(temp, temp2);
             } else if (temp2 !== varName) {
               colorsObject[match] = varName;
-              destContent += "// " + varName + ": " + match + ";\n";
+              destContent += "// " + varName + ": " + match + "; // " + filepath + "\n";
             } else {
               unSetVar = true;
             }
@@ -77,10 +92,13 @@ module.exports = function(grunt) {
     //=========================================================================
     // Create end file
     //=========================================================================
+
+    // Set log information count
     temp = "variable";
     if (countNewVar > 1) {
       temp += "s";
     }
+    // Print end message
     if (readFile(options.variableFile) !== destContent) {
       grunt.file.write(dest, destContent);
       grunt.log.error('Check ' + dest + " file and rename new " + temp);

@@ -38,16 +38,16 @@ module.exports = function(grunt) {
       options: {
         dest: "less/automatic.less",
         destResponsive: "less/responsive.less",
-        database: "ToolboxData.json",
+        database: "grunt/autoclass.json",
       }
     },
 
-    colortoless: {
+    autocolor: {
       automatic: {
         expand: true,
-        src: '*.less',
+        src: '**',
         cwd: 'less/',
-        flatten: true,
+        filter: 'isFile'
       },
       options: {
         variableFile: "less/variables/_colors.less",
@@ -67,7 +67,8 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['colortoless']);
+  grunt.registerTask('class', ['autoclass']);
+  grunt.registerTask('color', ['autocolor']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
