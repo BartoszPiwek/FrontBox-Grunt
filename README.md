@@ -52,6 +52,8 @@ Type: `String`
 Prefix preprocessors variable
 
 ## Release History
+_1.0.3 - autocolor: fix ignore variableFile_
+<br>
 _1.0.2 - autocolor: convert variables name to uppercase letter; add filepath to variableFile_
 <br>
 _1.0.0 - add autocolor & autoclass_

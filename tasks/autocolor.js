@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 
     // Loop files
     this.files.forEach(function(f) {
-      var filepath = f.src;
+      var filepath = f.src[0];
 
       //
       if (filepath !== dest) {
