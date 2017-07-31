@@ -46,17 +46,17 @@ module.exports = function(grunt) {
       // create RegExp for search variables in "variableFile" content
       regVariable = new RegExp(regCheckVar, "g");
 
-      // Fill object with colors in "destContent" file
-      while (match = regVariable.exec(destContent)) {
-        temp = match[0];
-        temp = temp.slice(temp.indexOf(":") + 1, temp.length).replace(/ /g, "");
-        temp2 = match[2].toUpperCase();
-        if (temp[0] === "#") {
-          colorsObject[temp2] = match[1];
-          // Convert variables name to uppercase letter
-          destContent = destContent.replace(temp, temp2);
-        }
+    // Fill object with colors in "destContent" file
+    while (match = regVariable.exec(destContent)) {
+      temp = match[0];
+      temp = temp.slice(temp.indexOf(":") + 1, temp.length).replace(/ /g, "");
+      temp2 = match[2].toUpperCase();
+      if (temp[0] === "#") {
+        colorsObject[temp2] = match[1];
+        // Convert variables name to uppercase letter
+        destContent = destContent.replace(temp, temp2);
       }
+    }
 
     // Loop files
     this.files.forEach(function(f) {
@@ -64,17 +64,16 @@ module.exports = function(grunt) {
 
       //
       if (filepath !== dest) {
-
         // Variables
         var content = grunt.file.read(filepath);
 
         while (match = regHex.exec(content)) {
           if (regIsHex.test(match)) {
             match = match[0];
+            temp = new RegExp(match);
             match = match.toUpperCase();
             temp2 = colorsObject[match];
             if (temp2 !== void 0 && temp2 !== varName) {
-              temp = new RegExp(match);
               content = content.replace(temp, temp2);
             } else if (temp2 !== varName) {
               colorsObject[match] = varName;
