@@ -19,9 +19,8 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('frontbox-grunt');
 ```
 
-## Tasks
+## Task: autocolor
 
-### autocolor
 Scan LESS/SASS files and automatic replace/create variable for colors.
 
 ```js
@@ -49,9 +48,16 @@ Path for less/sass file contain all colors variables
 #### options.prefix
 Type: `String`
 
-Prefix preprocessors variable
+Preprocessors variable prefix
+
+### Preview
+<p align="center">
+  <img src="/gitfiles/autocolor.gif" width="400" alt="Task: autocolor"/>
+</p>
 
 ## Release History
+_1.0.4 - autocolor: fix match character size_
+<br>
 _1.0.3 - autocolor: fix ignore variableFile_
 <br>
 _1.0.2 - autocolor: convert variables name to uppercase letter; add filepath to variableFile_
