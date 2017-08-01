@@ -1,8 +1,18 @@
+<p align="center">
+  <img src="/gitfiles/grunt-logo.png" width="200" height="200" alt="Grunt Logo"/>
+</p>
+
 # FrontBox Grunt
 
-Recommended:
+Strong integrate with:
 
 > https://github.com/BartoszPiwek/FrontBox-Grunt
+
+Bunch of useful grunt tasks for Front-End Developer
+```
+Author: Bartosz Piwek
+Version: 1.0.4
+```
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -13,12 +23,6 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install frontbox-grunt --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
-
-```js
-grunt.loadNpmTasks('frontbox-grunt');
-```
-
 ## Task: autocolor
 
 Scan LESS/SASS files and automatic replace/create variable for colors.
@@ -27,15 +31,19 @@ Scan LESS/SASS files and automatic replace/create variable for colors.
     autocolor: {
       automatic: {
         expand: true,
-        src: '*.less',
+        src: '**',
         cwd: 'less/',
-        flatten: true,
+        filter: 'isFile'
       },
       options: {
         variableFile: "less/variables/_colors.less",
         prefix: "@",
       }
     },
+```
+
+```js
+    grunt.registerTask('color', ['autocolor']);
 ```
 
 ### Options
@@ -54,6 +62,11 @@ Preprocessors variable prefix
 <p align="center">
   <img src="/gitfiles/autocolor.gif" width="400" alt="Task: autocolor"/>
 </p>
+
+## Bugs and development
+>
+- Feel free
+> https://github.com/BartoszPiwek/FrontBox-Grunt/issues
 
 ## Release History
 _1.0.4 - autocolor: fix match character size_
