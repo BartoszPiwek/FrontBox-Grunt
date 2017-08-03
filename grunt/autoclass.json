@@ -38,7 +38,7 @@
       "_"
     ],
     "endReg": [
-      ".*?"
+      "(?!col).*?"
     ],
     "function": [
       "automatic-responsive"

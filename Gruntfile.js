@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     autoclass: {
       automatic: {
         expand: true,
-        src: '*.html',
+        src: ['*.html', "*.php"],
         cwd: 'template/',
         flatten: true,
       },
@@ -71,6 +71,6 @@ module.exports = function(grunt) {
   grunt.registerTask('color', ['autocolor']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['jshint', 'class']);
 
 };

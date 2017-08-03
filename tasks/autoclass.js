@@ -10,19 +10,18 @@
 
 module.exports = function(grunt) {
 
-  var cheerio = require('cheerio');
-
-  // Global Variables
+  //=== Global Variables
 
   // all class finding in html files
   var allClass = [],
     // outpur file contain less functions & responsive class
     outputFile = '',
     responsiveFile = '',
-    responsiveArray = [];
+    responsiveArray = [],
+    regFindClass = /(?:class=(?:"|'))(.*?)(?:"|')/g;
 
 
-  // Global Functions
+  //=== Global Functions
 
   // Return one RegExp
   var createReg = function(object) {
@@ -38,7 +37,6 @@ module.exports = function(grunt) {
       return value + "|";
     }).join("");
     output += ")" + gap + endReg;
-
     return new RegExp(output);
   };
 
@@ -110,23 +108,23 @@ module.exports = function(grunt) {
             responsiveArray[indexInDatabase].push(value);
           }
 
-            var typedata = checkType(value);
-            if (typedata !== -1) {
-              var field = "field" + typedata;
-              if (!database[field].output) {
-                database[field].output = [];
-              }
-              grunt.log.writeln(typedata + " " + field + " " + value);
+          var typedata = checkType(value);
+          if (typedata !== -1) {
+            var field = "field" + typedata;
+            if (!database[field].output) {
+              database[field].output = [];
             }
+            grunt.log.writeln(typedata + " " + field + " " + value);
+          }
 
 
-            if (indexInDatabase === -1) {
-              unit = objectField.unit[index + 1];
-              responsiveArray.push([property, unit, value]);
-              // If array exist
-            } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
-              responsiveArray[indexInDatabase].push(value);
-            }
+          if (indexInDatabase === -1) {
+            unit = objectField.unit[index + 1];
+            responsiveArray.push([property, unit, value]);
+            // If array exist
+          } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
+            responsiveArray[indexInDatabase].push(value);
+          }
           return value;
 
 
@@ -189,6 +187,13 @@ module.exports = function(grunt) {
       return output;
     };
 
+    var addClass2Database = function(name) {
+      if (allClass.indexOf(name) === -1) {
+        allClass.push(name);
+        console.log(name);
+      }
+    };
+
     //===== START FUNCTION
 
     // Loop files
@@ -197,17 +202,15 @@ module.exports = function(grunt) {
       // Variables
       var filepath = f.src,
         content = grunt.file.read(filepath),
-        $ = cheerio.load(content, {
-          decodeEntities: false
-        });
-      $('[class]').each(function(array) {
-        $($(this).attr('class').split(' ')).each(function() {
-          var name = this;
-          if (allClass.indexOf(name) === -1) {
-            allClass.push(name);
+        match;
+      while (match = regFindClass.exec(content)) {
+        match = match[1].split(' ');
+        for (var i = match.length - 1; i > 0; i--) {
+          if (match[i] !== "") {
+            addClass2Database(match[i]);
           }
-        });
-      });
+        }
+      }
     });
 
     //

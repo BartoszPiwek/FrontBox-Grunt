@@ -93,10 +93,8 @@ module.exports = function(grunt) {
     //=========================================================================
 
     // Set log information count
-    temp = "variable";
-    if (countNewVar > 1) {
-      temp += "s";
-    }
+    temp = grunt.util.pluralize( countNewVar, "variable/variables");
+    console.log(countNewVar);
     // Print end message
     if (readFile(options.variableFile) !== destContent) {
       grunt.file.write(dest, destContent);
