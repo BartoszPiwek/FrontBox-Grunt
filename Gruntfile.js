@@ -42,6 +42,21 @@ module.exports = function(grunt) {
       }
     },
 
+    // Configuration to be run (and then tested).
+    autosvg: {
+      automatic: {
+        expand: true,
+        src: ['*.html', "*.php"],
+        cwd: 'test/autosvg',
+        flatten: true,
+      },
+      options: {
+        output_directory: "test/autosvg/output/",
+        svg_directory: "test/autosvg/svg/",
+        debug_log: true,
+      }
+    },
+
     autocolor: {
       automatic: {
         expand: true,
@@ -69,8 +84,9 @@ module.exports = function(grunt) {
   // plugin's task(s), then test the result.
   grunt.registerTask('class', ['autoclass']);
   grunt.registerTask('color', ['autocolor']);
+  grunt.registerTask('svg', ['autosvg']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'class']);
+  grunt.registerTask('default', ['jshint', 'svg']);
 
 };

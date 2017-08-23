@@ -25,7 +25,7 @@ npm install frontbox-grunt --save-dev
 
 ## Task: autocolor
 
-Scan LESS/SASS files and automatic replace/create variable for colors.
+Scan CSS Preprocessor files (LESS/SASS) and automatically replace/create variable for colors.
 
 ```js
     autocolor: {
@@ -56,12 +56,80 @@ Path for less/sass file contain all colors variables
 #### options.prefix
 Type: `String`
 
-Preprocessors variable prefix
+CSS Preprocessors variable prefix.
+```less
+  @variable: 16px;
+```
+```sass
+  $variable: 16px;
+```
 
 ### Preview
 <p align="center">
   <img src="/gitfiles/autocolor.gif" width="400" alt="Task: autocolor"/>
 </p>
+
+## Task: autosvg
+
+Automatically insert inline SVG in files (like HTML/PHP)
+
+```js
+  autosvg: {
+    automatic: {
+      expand: true,
+      src: ['*.html', "*.php"],
+      cwd: 'template/',
+      flatten: true,
+    },
+    options: {
+      output_directory: "public/",
+      svg_directory: "svg/",
+      debug_log: true,
+    }
+  },
+```
+
+```js
+    grunt.registerTask('svg', ['autosvg']);
+```
+
+### Usage
+
+Place svg filename (without .svg) in HTML template comment block:
+{icon_name} - this is where you place your icon filename
+
+```html
+  <!-- icon-{icon_name} -->
+```
+
+Example: You want place icon 'arrow-left.svg' in document. Your comment block will be looks:
+
+```html
+  <!-- icon-arrow-left -->
+```
+
+### Options
+
+#### options.output_directory
+Type: `String`
+
+Path directory for output files.
+
+#### options.svg_directory
+Type: `String`
+
+Path for svg directory files.
+
+#### options.debug_log
+Type: `Bool` Default value: 'false'
+
+Show expanded log.
+
+### Preview
+<p align="center">
+  <img src="/gitfiles/autosvg.gif" width="400" alt="Task: autosvg"/>
+</p>
+
 
 ## Bugs and development
 >
@@ -69,6 +137,8 @@ Preprocessors variable prefix
 > https://github.com/BartoszPiwek/FrontBox-Grunt/issues
 
 ## Release History
+_1.0.41 - add autosvg (no publish)_
+<br>
 _1.0.4 - autocolor: fix match character size_
 <br>
 _1.0.3 - autocolor: fix ignore variableFile_
