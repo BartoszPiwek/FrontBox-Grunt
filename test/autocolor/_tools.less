@@ -1,0 +1,184 @@
+/*=========================================================================
+|| FILE: _tools.less
+===========================================================================
+|-Create repeatedly class using functions
+=========================================================================*/
+
+
+//=========================================================================
+// Wrap
+// &-@{max-width} { .wrap(@max-width, @padding); }
+
+.wrap {
+  // add here
+
+  &-documentation {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.row {
+  &--tutorial {
+    .setChildernClass(col,{
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #a3a3a3;
+      font-style: italic;
+      });
+  }
+
+  &-navigation {
+
+    @media @tablet {
+      position: fixed;
+    }
+  }
+
+}
+
+//=========================================================================
+// Row gap
+// .&--@{padding} { .add-gap(@padding); }
+
+.row-gap {
+  &--40 { .add-gap(40); }
+  &--55 { .add-gap(55); }
+}
+
+//=========================================================================
+// Column
+// .add-col(@columnSize, @wrapSize, @gapSize) {
+
+.col {
+  .add-col(130, 1170, 40);
+  .add-col(960, 1170, 40);
+}
+
+//=========================================================================
+// Button
+// .add-button(@color, @background, @border:no, @hover:@default-hover, @stayColor:no)
+
+.btn {
+
+  // Default style
+
+
+  // Addon buttons class
+  &-primary {
+    .add-button(@color:@color-white, @background:#136add, @border:#0e52ac, @hover:20%);
+  }
+  &-secondary {
+    color: red;
+  }
+
+}
+
+//=========================================================================
+// Badge
+// .add-badge(@offset, @background, @hover:"")
+
+.badge {
+
+  &-big {
+    .add-badge(60, #dd5757, true);
+  }
+
+}
+
+//=========================================================================
+// Label
+// .add-checkbox(@size, @offset, @border, @size-tick, @font)
+
+.alert {
+
+  &-success {
+    .add-alert(#2ef654, #a6ffb7, 18, 56, 1px solid #2ef654, 30, 30);
+    box-shadow: 0 5px 20px -4px fade(@color-black, 50%);
+  }
+
+}
+
+//=========================================================================
+// List
+// .add-maker(@size, @offset, @border, @size-tick, @font)
+
+.list-marker {
+  .add-marker(30);
+}
+
+//=========================================================================
+// Checkbox
+// .add-checkbox(@size, @offset, @border, @size-tick, @font)
+
+.checkbox {
+      .add-checkbox(20, 50, 1px solid @color-black, 15, 16);
+}
+
+//=========================================================================
+// Hero
+// .add-hero(@lg-size, @md-size:"", @sm-size:"")
+
+.hero {
+
+  &--primary {
+    background: #3a8fda;
+    color: @color-white;
+    .add-hero(100, @md-size:"", @sm-size:"");
+  }
+
+  &--section {
+    background: #70b63f;
+    color: @color-white;
+    .add-hero(60, @md-size:"", @sm-size:"");
+  }
+
+  &--grid {
+    background: #4a27b0;
+  }
+
+}
+
+//=========================================================================
+// Section
+// .add-section(@lg-size, @md-size:"", @sm-size:"")
+
+.section {
+
+  &--primary {
+    background: #3a8fda;
+    color: @color-white;
+    .add-section(100);
+  }
+
+  &--default {
+    .add-section(60);
+  }
+
+  &--guide {
+    .add-section(35);
+  }
+
+}
+
+//=========================================================================
+// Font size
+// .add-header(@lg-size, @md-size:"", @sm-size:"")
+
+.h1 {
+  .add-header(40);
+}
+.h2 {
+  .add-header(35);
+}
+.h3 {
+  .add-header(32);
+}
+.h4 {
+  .add-header(28);
+}
+.h5 {
+  .add-header(25);
+}

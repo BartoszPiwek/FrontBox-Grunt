@@ -1,0 +1,168 @@
+// If navbar sticky, add padding to body
+
+.body--navbar-sticky {
+  padding-top: @navbar-height;
+}
+
+.code {
+  font-family: monospace;
+  background-color: #e9e9e9;
+  border: 1px solid #dbdbdb;
+  padding: 2px 3px;
+  display: inline-block;
+}
+
+.link {
+  display: inline-block;
+  margin: 4px;
+  border-bottom: 1px dashed #92aaf4;
+  color: #92aaf4;
+  transition: color @time-transition, border-bottom @time-transition;
+  cursor: pointer;
+  .add-hover({ border-color: #6184f0; color: #6184f0; });
+}
+
+.navigation {
+  &__title {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  &__links {
+    a {
+      display: inline-block;
+      margin: 4px;
+      border-bottom: 1px dashed transparent;
+      color: #92aaf4;
+      transition: color @time-transition, border-bottom @time-transition;
+      cursor: pointer;
+      .add-hover({ border-color: #92aaf4; color: #6184f0; });
+
+      &.active {
+        border-color: #92aaf4;
+        color: #6184f0;
+      }
+    }
+  }
+}
+
+.ghost-info {
+  text-align: center;
+  padding: 20px;
+  background-color: #e9e9e9;
+  border: 1px solid #dbdbdb;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    color: #a3a3a3;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+
+.doc {
+  display: block;
+
+  &-block {
+    margin-bottom: 35px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #a6b5c4;
+
+    > * {
+      margin: 10px 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    &--article {
+      > * {
+        margin: 25px 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &__title {
+    .add-header(22);
+    font-weight: bold;
+  }
+
+  &__code {
+    text-align: left;
+    font-size: 14px;
+    font-family: @font-family-monospace;
+  }
+
+  &__prev {
+    &:before {
+      content: "preview";
+    }
+
+    .div[class^=col],
+    div[class*=col] {
+      height: 45px;
+      border: 2px solid #a6b5c4;
+    }
+
+    > div {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__code {
+    font-family: monospace;
+
+    &:before {
+      content: "code";
+    }
+  }
+
+  &__text {
+    text-align: right;
+  }
+
+  &__syntax {
+    text-align: left;
+    font-family: monospace;
+
+    &:before {
+      content: "syntax";
+    }
+  }
+}
+
+.tab {
+  &-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

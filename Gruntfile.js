@@ -32,13 +32,13 @@ module.exports = function(grunt) {
       automatic: {
         expand: true,
         src: ['*.html', "*.php"],
-        cwd: 'template/',
+        cwd: 'test/autoclass/',
         flatten: true,
       },
       options: {
-        dest: "less/automatic.less",
-        destResponsive: "less/responsive.less",
-        database: "grunt/autoclass.json",
+        dest: "test/autoclass/less/automatic.less",
+        destResponsive: "test/autoclass/less/responsive.less",
+        database: "test/autoclass/autoclass.json",
       }
     },
 
@@ -60,12 +60,12 @@ module.exports = function(grunt) {
     autocolor: {
       automatic: {
         expand: true,
-        src: '**',
-        cwd: 'less/',
+        src: '**.less',
+        cwd: 'test/autocolor/',
         filter: 'isFile'
       },
       options: {
-        variableFile: "less/variables/_colors.less",
+        variableFile: "test/autocolor/colors.less",
         prefix: "@",
       }
     },

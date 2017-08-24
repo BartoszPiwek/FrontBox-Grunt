@@ -114,18 +114,21 @@ module.exports = function(grunt) {
             if (!database[field].output) {
               database[field].output = [];
             }
-            grunt.log.writeln(typedata + " " + field + " " + value);
-          }
-
-
-          if (indexInDatabase === -1) {
-            unit = objectField.unit[index + 1];
-            responsiveArray.push([property, unit, value]);
-            // If array exist
-          } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
-            responsiveArray[indexInDatabase].push(value);
+            // grunt.log.writeln(typedata + " " + field + " " + value);
           }
           return value;
+
+          // if (indexInDatabase === -1) {
+          //   console.log("Create new responsive: " + property, unit, value);
+          //   unit = objectField.unit[index + 1];
+          //   responsiveArray.push([property, unit, value]);
+          //   // If array exist
+          // } else if (responsiveArray[indexInDatabase].indexOf(value) === -1) {
+          //   console.log("Add value to database " + value);
+          //   responsiveArray[indexInDatabase].push(value);
+          // }
+          // console.log("Create new responsive: " + property, unit, value);
+          // return value;
 
 
         } else {
@@ -190,7 +193,7 @@ module.exports = function(grunt) {
     var addClass2Database = function(name) {
       if (allClass.indexOf(name) === -1) {
         allClass.push(name);
-        console.log(name);
+        // console.log(name);
       }
     };
 
@@ -250,6 +253,7 @@ module.exports = function(grunt) {
     //=========================================================================
 
     var buildResponsive = function(array) {
+      // console.log(array);
       if (array.length) {
         var len = array.length,
           output = "\n";
@@ -266,7 +270,7 @@ module.exports = function(grunt) {
           output += "}\n";
 
         }
-        grunt.log.writeln('File "' + destResponsive + '" create.');
+        grunt.log.ok('File "' + destResponsive + '" create.');
         return output;
       }
       grunt.log.writeln("Responsive class: empty");
@@ -279,6 +283,6 @@ module.exports = function(grunt) {
     //=========================================================================
     grunt.file.write(dest, outputFile);
     grunt.file.write(destResponsive, outputFileResponsive);
-    grunt.log.writeln('File "' + dest + '" create.');
+    grunt.log.ok('File "' + dest + '" create.');
   });
 };

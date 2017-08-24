@@ -1,0 +1,15 @@
+// .add-checkbox(@size, @offset, @border, @size-tick, @font)
+
+.form {
+  &-checkbox {
+    &.default {
+      .add-checkbox(20, 30, 1px solid @color-black, 15, 16);
+      @media @tablet {
+        .add-checkbox(40, 50, 1px solid @color-black, 35, 24);
+      }
+      @media @desktop {
+        .add-checkbox(30, 70, 1px solid @color-black, 10, 45);
+      }
+    }
+  }
+}

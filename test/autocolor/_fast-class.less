@@ -1,0 +1,33 @@
+//=========================================================================
+// BREADCRUMBS
+//
+// SYNTAX:
+//   .breadcrumbs
+//   L .item
+//   L .separator
+//   L ...
+//
+//=========================================================================
+
+.breadcrumbs {
+  font-size: 16px;
+  margin-bottom: 85px;
+  & > .item {
+    display: inline-block;
+    &:first-child {
+      text-transform: uppercase;
+    }
+  }
+  & > .separator {
+    margin: 0 5px;
+  }
+}
+
+.img {
+  &-fill {
+  	object-fit: cover;
+  }
+  &-round {
+    border-radius: 50%;
+  }
+}

@@ -11,7 +11,7 @@ Strong integrate with:
 Bunch of useful grunt tasks for Front-End Developer
 ```
 Author: Bartosz Piwek
-Version: 1.0.4
+Last publish version: 1.0.5
 ```
 
 ## Getting Started
@@ -21,6 +21,21 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 ```shell
 npm install frontbox-grunt --save-dev
+```
+
+## Required for multitasks
+In module export function (in Gruntfile.js) must be require declaration
+```js
+module.exports = function(grunt) {
+// other
+require('jit-grunt')(grunt, {
+  autocolor: 'node_modules/frontbox-grunt/tasks/autocolor.js',
+  autoclass: 'node_modules/frontbox-grunt/tasks/autoclass.js',
+  autosvg: 'node_modules/frontbox-grunt/tasks/autosvg.js',
+});
+// other
+grunt.initConfig({
+// other
 ```
 
 ## Task: autocolor
@@ -137,6 +152,8 @@ Show expanded log.
 > https://github.com/BartoszPiwek/FrontBox-Grunt/issues
 
 ## Release History
+_1.0.5 - autoclass: repair duplication; cleaning_
+<br>
 _1.0.41 - add autosvg (no publish)_
 <br>
 _1.0.4 - autocolor: fix match character size_

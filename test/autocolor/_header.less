@@ -1,0 +1,213 @@
+//==========
+// BURGER
+//==========
+
+#burgerButton {
+  border: 1px solid @burger-border;
+  border-radius: 5px;
+  color: @color-gray;
+  display: inline-block;
+  float: right;
+  height: @burder-size-h;
+  position: relative;
+  transition: border .2s;
+  width: @burder-size-w;
+  .fixDelay300ms();
+  @media @tablet {
+    display: none;
+  }
+
+  &:not(.active) + #burgerMenu {
+    height: 0 !important;
+    @media @tablet {
+      height: auto !important;
+    }
+  }
+
+  &.active + #burgerMenu {
+    padding: 20px 0;
+    transition: height .2s, padding 0s;
+    @media @tablet {
+      padding: 0;
+    }
+  }
+
+  & > .plank {
+    background-color: @burger-plank;
+    border-radius: 50px;
+    display: inline-block;
+    height: 4px;
+    left: 10%;
+    position: absolute;
+    transition: all .2s;
+    width: 80%;
+
+    &:first-child {
+      top: 20%;
+    }
+
+    &:nth-child(2) {
+      top: 45%;
+    }
+
+    &:last-child {
+      top: 70%;
+    }
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: @burger-hover-border;
+
+    & > .plank {
+      background-color: @burger-hover-plank;
+    }
+  }
+  // When active burger
+  &.active {
+    > .plank {
+      &:first-child {
+        left: 0;
+        top: 45%;
+        transform: rotate(45deg);
+        width: 100%;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:last-child {
+        left: 0;
+        top: 45%;
+        transform: rotate(-45deg);
+        width: 100%;
+      }
+    }
+  }
+  // End active burger
+}
+
+#burgerMenu {
+  background-color: @color-primary;
+  bottom: 0;
+  box-sizing: content-box;
+  left: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  transform: translate(0, 100%);
+  transition: height .2s, padding .1s .2s;
+  width: 100%;
+  @media @tablet {
+    background-color: transparent;
+    box-sizing: border-box;
+    display: block !important;
+    height: auto !important;
+    position: static;
+    transform: none;
+  }
+
+  & > .item {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: @color-black;
+    transition: color @time-transition;
+
+    > * {
+          vertical-align: middle;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+    @media @tablet {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: 10px;
+      text-align: left;
+          vertical-align: middle;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .add-hover({
+      color:   #b8b8b8;
+    });
+
+    &.active {
+      color: @color-white;
+    }
+  }
+}
+// END BURGER
+
+.nav {
+  z-index: 1035;
+  @media @tablet {
+    margin-bottom: 0;
+  }
+}
+
+.navbar {
+  background-color: #3a8fda;
+  display: table;
+  height: @navbar-height;
+  position: relative;
+  width: 100%;
+
+  &-logo {
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @media @tablet {
+      display: inline-block;
+      position: static;
+      transform: none;
+      vertical-align: middle;
+    }
+  }
+
+  &-nav {
+    display: inline-table;
+    float: right;
+    vertical-align: middle;
+    @media @tablet {
+      float: none;
+      left: 0;
+      position: absolute;
+      text-align: right;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+  }
+
+  .wrap {
+      display: table;
+    height: 100%;
+    vertical-align: middle;
+    .clearfix();
+  }
+
+  & &-section {
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+  }
+}
+
+.body--navbar-sticky {
+  .navbar {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+}
