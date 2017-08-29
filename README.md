@@ -11,7 +11,7 @@ Strong integrate with:
 Bunch of useful grunt tasks for Front-End Developer
 ```
 Author: Bartosz Piwek
-Last publish version: 1.0.5
+Last publish version: 1.0.6
 ```
 
 ## Getting Started
