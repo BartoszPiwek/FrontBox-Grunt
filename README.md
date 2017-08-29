@@ -86,7 +86,7 @@ CSS Preprocessors variable prefix.
 
 ## Task: autosvg
 
-Automatically insert inline SVG in files (like HTML/PHP)
+Automatically insert SVG tag with class and inline path
 
 ```js
   autosvg: {
@@ -110,17 +110,10 @@ Automatically insert inline SVG in files (like HTML/PHP)
 
 ### Usage
 
-Place svg filename (without .svg) in HTML template comment block:
-{icon_name} - this is where you place your icon filename
+Place SVG tag with 'inline' string in the begin and src with SVG filename (without .svg and path):
 
 ```html
-  <!-- icon-{icon_name} -->
-```
-
-Example: You want place icon 'arrow-left.svg' in document. Your comment block will be looks:
-
-```html
-  <!-- icon-arrow-left -->
+  <svg inline class="icon download" src="download"></svg>
 ```
 
 ### Options
@@ -138,11 +131,11 @@ Path for svg directory files.
 #### options.debug_log
 Type: `Bool` Default value: 'false'
 
-Show expanded log.
+Print expanded log.
 
 ### Preview
 <p align="center">
-  <img src="/gitfiles/autosvg.gif" width="400" alt="Task: autosvg"/>
+  <img src="/gitfiles/autosvg.gif" width="600" alt="Task: autosvg"/>
 </p>
 
 
@@ -152,6 +145,8 @@ Show expanded log.
 > https://github.com/BartoszPiwek/FrontBox-Grunt/issues
 
 ## Release History
+_1.0.6 - autosvg: easy class insert; change tag_
+<br>
 _1.0.5 - autoclass: repair duplication; cleaning_
 <br>
 _1.0.41 - add autosvg (no publish)_
