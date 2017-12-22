@@ -79,14 +79,16 @@ module.exports = function(grunt) {
       },
       options: {
         debug: true,
-        twitter_account: "@test",
-        website_name: "",
-        website_image: "",
-        website_locale: "",
-        website_link: "",
+        twitter_account: "@twitter-account",
+        website_name: "Website name",
+        website_url: "http://example.com",
+        image_dir: "images",
+        image_format: "jpg",
+        website_locale: "pl_PL",
         rename_url: {
           "index.html": "index2.html"
-        }
+        },
+        website_dir: "test/plugin-twitter/"
       }
     },
 
@@ -105,9 +107,9 @@ module.exports = function(grunt) {
   grunt.registerTask('class', ['autoclass']);
   grunt.registerTask('color', ['autocolor']);
   grunt.registerTask('svg', ['autosvg']);
-  grunt.registerTask('meta', ['meta']);
+  grunt.registerTask('meta', ['autometaseo']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'svg']);
+  grunt.registerTask('default', ['jshint', 'meta']);
 
 };

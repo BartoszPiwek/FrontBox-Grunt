@@ -35,5 +35,8 @@
   },
   "keywords": [
     "Frontbox, autocreate, class, automatic, colors, autocolor, autoclass, svg, autosvg, inline"
-  ]
+  ],
+  "dependencies": {
+    "image-size": "^0.6.2"
+  }
 }
