@@ -70,6 +70,26 @@ module.exports = function(grunt) {
       }
     },
 
+    autometaseo: {
+      automatic: {
+        expand: true,
+        src: ['*.html'],
+        cwd: 'test/plugin-twitter',
+        flatten: true,
+      },
+      options: {
+        debug: true,
+        twitter_account: "@test",
+        website_name: "",
+        website_image: "",
+        website_locale: "",
+        website_link: "",
+        rename_url: {
+          "index.html": "index2.html"
+        }
+      }
+    },
+
   });
 
   // Actually load this plugin's task(s).
@@ -85,6 +105,7 @@ module.exports = function(grunt) {
   grunt.registerTask('class', ['autoclass']);
   grunt.registerTask('color', ['autocolor']);
   grunt.registerTask('svg', ['autosvg']);
+  grunt.registerTask('meta', ['meta']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'svg']);
