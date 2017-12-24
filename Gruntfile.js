@@ -70,7 +70,7 @@ module.exports = function(grunt) {
       }
     },
 
-    autometaseo: {
+    autometa: {
       automatic: {
         expand: true,
         src: ['*.html'],
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
   grunt.registerTask('class', ['autoclass']);
   grunt.registerTask('color', ['autocolor']);
   grunt.registerTask('svg', ['autosvg']);
-  grunt.registerTask('meta', ['autometaseo']);
+  grunt.registerTask('meta', ['autometa']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'meta']);

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/gitfiles/grunt-logo.png" width="200" height="200" alt="Grunt Logo"/>
+  <img src="gitfiles/grunt-logo.png" width="200" height="200" alt="Grunt Logo"/>
 </p>
 
 # FrontBox Grunt
@@ -11,7 +11,7 @@ Strong integrate with:
 Bunch of useful grunt tasks for Front-End Developer
 ```
 Author: Bartosz Piwek
-Last publish version: 1.0.6
+Last version: 1.0.6
 ```
 
 ## Getting Started
@@ -81,7 +81,7 @@ CSS Preprocessors variable prefix.
 
 ### Preview
 <p align="center">
-  <img src="/gitfiles/autocolor.gif" width="400" alt="Task: autocolor"/>
+  <img src="gitfiles/autocolor.gif" width="400" alt="Task: autocolor"/>
 </p>
 
 ## Task: autosvg
@@ -135,8 +135,46 @@ Print expanded log.
 
 ### Preview
 <p align="center">
-  <img src="/gitfiles/autosvg.gif" width="600" alt="Task: autosvg"/>
+  <img src="gitfiles/autosvg.gif" width="600" alt="Task: autosvg"/>
 </p>
+
+## Task: autometa
+
+Automatic insert meta tags
+
+```js
+    autometa: {
+      automatic: {
+        expand: true,
+        src: ['*.html'],
+        cwd: 'test/plugin-twitter',
+        flatten: true,
+      },
+      options: {
+        debug: true,
+        twitter_account: "@twitter-account",
+        website_name: "Website name",
+        website_url: "http://example.com",
+        image_dir: "images",
+        image_format: "jpg",
+        website_locale: "pl_PL",
+        rename_url: {
+          "index.html": "index2.html"
+        },
+        website_dir: "test/plugin-twitter/"
+      }
+    },
+```
+
+```js
+    grunt.registerTask('meta', ['autometa']);
+```
+
+### Usage
+Only fill task options
+
+### Options
+TODO
 
 
 ## Bugs and development
@@ -145,6 +183,9 @@ Print expanded log.
 > https://github.com/BartoszPiwek/FrontBox-Grunt/issues
 
 ## Release History
+
+_1.0.61 - add autometa_
+<br>
 _1.0.6 - autosvg: easy class insert; change tag_
 <br>
 _1.0.5 - autoclass: repair duplication; cleaning_

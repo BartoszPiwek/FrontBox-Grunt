@@ -1,5 +1,5 @@
 /*
- * Automatic insert meta for SEO
+ * Automatic insert meta
  * https://github.com/BartoszPiwek/FrontBox-Grunt
  *
  * Copyright (c) 2017 Bartosz Piwek
@@ -10,7 +10,7 @@
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('autometaseo', 'Creat', function() {
+  grunt.registerMultiTask('autometa', 'Creat', function() {
 
     // Return database file
     var return_file_content = function(path) {
