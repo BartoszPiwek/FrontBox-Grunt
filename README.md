@@ -4,7 +4,7 @@
 
 # FrontBox Grunt
 
-Strong integrate with:
+Strongly integrated with:
 
 > https://github.com/BartoszPiwek/FrontBox-Grunt
 
