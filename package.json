@@ -1,7 +1,7 @@
 {
   "name": "frontbox-grunt",
   "description": "Bunch of helpful tasks for Front-End Developer",
-  "version": "1.0.61",
+  "version": "1.0.62",
   "homepage": "https://github.com/BartoszPiwek/FrontBox-Grunt",
   "author": {
     "name": "Bartosz Piwek",
@@ -34,7 +34,7 @@
     "frontbox-grunt": "1.0.0"
   },
   "keywords": [
-    "Frontbox, autocreate, class, automatic, colors, autocolor, autoclass, svg, autosvg, inline"
+    "FrontBox, autocreate, class, automatic, colors, autocolor, autoclass, svg, autosvg, inline"
   ],
   "dependencies": {
     "image-size": "^0.6.2"

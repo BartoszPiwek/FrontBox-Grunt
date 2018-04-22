@@ -77,7 +77,7 @@ module.exports = function(grunt) {
               content = content.replace(temp, temp2);
             } else if (temp2 !== varName) {
               colorsObject[match] = varName;
-              destContent += "// " + varName + ": " + match + "; // " + filepath + "\n";
+              destContent += "\n// " + varName + ": " + match + "; // " + filepath;
             } else {
               unSetVar = true;
             }
